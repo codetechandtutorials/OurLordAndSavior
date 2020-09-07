@@ -1,6 +1,12 @@
 #include <iostream>
-#include <GLFW/glfw3.h>
 #include <OLASConfig.h>
+
+#include <GL/glew.h>
+#include <GL/glut.h>
+
+#include <GLFW/glfw3.h>
+
+// #define GLEW_STATIC
 
 #ifdef USE_ADDER
 	#include <adder.h>

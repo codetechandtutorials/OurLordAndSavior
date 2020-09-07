@@ -2,6 +2,29 @@ cmake_minimum_required(VERSION 3.13.4)
 
 project(OLAS VERSION 1.0)
 
+#FIND LIBRARY FOR CMAKE 3.13.4 (NO [REQUIRED] IN CMAKE YET)
+find_library(myglewlib glew NAMES glew2 GLEW GLEW2 DOC "glew library")
+
+if (${myglewlib} STREQUAL myglewlib-NOTFOUND)
+	message(FATAL_ERROR "no glew, sad day")
+else()
+	message(STATUS "glew found! as ${myglewlib}")
+endif()
+
+find_library(myglulib glu NAMES GLU DOC "glu library")
+if (${myglulib} STREQUAL myglulib-NOTFOUND)
+	message(FATAL_ERROR "no glu, sad day")
+else()
+	message(STATUS "glu found! as ${myglulib}")
+endif()
+
+find_library(mygllib gl NAMES GL DOC "gl library")
+if (${mygllib} STREQUAL mygllib-NOTFOUND)
+	message(FATAL_ERROR "no gl, sad day")
+else()
+	message(STATUS "gl found! as ${mygllib}")
+endif()
+
 
 # adder use logic
 option(USE_ADDER "A simple library for adding 2 floats." ON)
@@ -58,7 +81,7 @@ target_link_directories(${PROJECT_NAME}
 	${EXTRA_LIB_DIRS}
 )
 
-target_link_libraries(${PROJECT_NAME} ${EXTRA_LINKS} glfw)
+target_link_libraries(${PROJECT_NAME} ${EXTRA_LINKS} glfw ${myglewlib} ${myglulib} ${mygllib})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 install(FILES "${PROJECT_BINARY_DIR}/OLASConfig.h" DESTINATION include)
