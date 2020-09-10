@@ -14,7 +14,7 @@
 
 int main(int argc, char* argv[])
 {
-    std::cout << "Hey, Zues!\n";
+    std::cout << "Hey, Zeus!\n";
 
 #ifdef USE_ADDER
     std::cout << "using Adder lib:" << add(72.1f, 73.8f) << '\n';
