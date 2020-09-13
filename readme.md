@@ -1,9 +1,7 @@
+# OurLordAndSavior
 
-configure and build with cmake using cmake-gui or use command line
+The build system generator that we should probably all use, CMake.
+
+This repo is generated for the set of [CMake Tutorials](https://www.youtube.com/watch?v=nlKcXPUJGwA&list=PLalVdRk2RC6o5GHu618ARWh0VO0bFlif4)
 
 
-linux command line ez mode
-
-    ./configure.sh
-    ./build.sh
-    ./run.sh
