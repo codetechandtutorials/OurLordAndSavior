@@ -2,29 +2,7 @@ cmake_minimum_required(VERSION 3.13.4)
 
 project(OLAS VERSION 1.0)
 
-#FIND LIBRARY FOR CMAKE 3.13.4 (NO [REQUIRED] IN CMAKE YET)
-find_library(myglewlib glew NAMES glew2 GLEW GLEW2 DOC "glew library")
-
-if (${myglewlib} STREQUAL myglewlib-NOTFOUND)
-	message(FATAL_ERROR "no glew, sad day")
-else()
-	message(STATUS "glew found! as ${myglewlib}")
-endif()
-
-find_library(myglulib glu NAMES GLU DOC "glu library")
-if (${myglulib} STREQUAL myglulib-NOTFOUND)
-	message(FATAL_ERROR "no glu, sad day")
-else()
-	message(STATUS "glu found! as ${myglulib}")
-endif()
-
-find_library(mygllib gl NAMES GL DOC "gl library")
-if (${mygllib} STREQUAL mygllib-NOTFOUND)
-	message(FATAL_ERROR "no gl, sad day")
-else()
-	message(STATUS "gl found! as ${mygllib}")
-endif()
-
+find_package(GLEW REQUIRED)
 
 # adder use logic
 option(USE_ADDER "A simple library for adding 2 floats." ON)
@@ -38,15 +16,11 @@ if(USE_ADDER)
 
 endif()
 
+add_executable(${PROJECT_NAME} main.cpp)
 
 configure_file(OLASConfig.h.in OLASConfig.h)
 
-
-add_executable(${PROJECT_NAME} main.cpp)
-
-
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_BINARY_DIR})
-
 
 #           DOWNLOAD ALL THE SUBMODULES
 find_package(Git QUIET)
@@ -74,14 +48,15 @@ add_subdirectory(external/glfw)
 target_include_directories(${PROJECT_NAME} 
     PUBLIC external/glfw/include
 	${EXTRA_INCLUDE_DIRS}
+	${GLEW_INCLUDE_DIRS}
 )
 
 target_link_directories(${PROJECT_NAME} 
-    PUBLIC external/glfw/src
+	PUBLIC external/glfw/src
 	${EXTRA_LIB_DIRS}
 )
 
-target_link_libraries(${PROJECT_NAME} ${EXTRA_LINKS} glfw ${myglewlib} ${myglulib} ${mygllib})
+target_link_libraries(${PROJECT_NAME} ${EXTRA_LINKS} glfw ${GLEW_LIBRARIES} GL GLU)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 install(FILES "${PROJECT_BINARY_DIR}/OLASConfig.h" DESTINATION include)
