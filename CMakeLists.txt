@@ -1,28 +1,10 @@
 cmake_minimum_required(VERSION 3.13.4)
 
-project(OLAS VERSION 1.0)
+project(OLAS VERSION 1.1)
 
 find_package(GLEW REQUIRED)
 
-# adder use logic
-option(USE_ADDER "A simple library for adding 2 floats." ON)
-
-if(USE_ADDER)
-	add_subdirectory(Adder)
-
-	list(APPEND EXTRA_LIB_DIRS "Adder")
-	list(APPEND EXTRA_INCLUDE_DIRS "Adder")
-	list(APPEND EXTRA_LINKS adder)
-
-endif()
-
-add_executable(${PROJECT_NAME} main.cpp)
-
-configure_file(OLASConfig.h.in OLASConfig.h)
-
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_BINARY_DIR})
-
-#           DOWNLOAD ALL THE SUBMODULES
+# get glfw from github
 find_package(Git QUIET)
 if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
 # Update submodules as needed
@@ -45,20 +27,21 @@ endif()
 
 add_subdirectory(external/glfw)
 
-target_include_directories(${PROJECT_NAME} 
-    PUBLIC external/glfw/include
-	${EXTRA_INCLUDE_DIRS}
-	${GLEW_INCLUDE_DIRS}
-)
 
-target_link_directories(${PROJECT_NAME} 
-	PUBLIC external/glfw/src
-	${EXTRA_LIB_DIRS}
-)
+# adder use logic
+option(USE_ADDER "A simple library for adding 2 floats." ON)
+option(TEST_ADDER "Test library for adding 2 floats." ON)
+option(TEST_GRAPHICS "Test launching opengl with glfw window." ON)
 
-target_link_libraries(${PROJECT_NAME} ${EXTRA_LINKS} glfw ${GLEW_LIBRARIES} GL GLU)
+if(TEST_ADDER)
+	add_subdirectory(Adder)
+	list(APPEND EXTRA_LIB_DIRS "Adder")
+	list(APPEND EXTRA_INCLUDE_DIRS "Adder")
+	list(APPEND EXTRA_LINKS adder)
+endif()
 
-install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+configure_file(OLASConfig.h.in OLASConfig.h)
+
 install(FILES "${PROJECT_BINARY_DIR}/OLASConfig.h" DESTINATION include)
 
 include(InstallRequiredSystemLibraries)
@@ -66,3 +49,7 @@ set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
 set(CPACK_PACKAGE_VERSION_MAJOR "${Tutorial_VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${Tutorial_VERSION_MINOR}")
 include(CPack)
+
+if(TEST_ADDER OR TEST_GRAPHICS)
+  add_subdirectory(tests)
+endif()

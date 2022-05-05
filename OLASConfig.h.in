@@ -2,3 +2,5 @@
 #define OLAS_VERSION_MINOR @OLAS_VERSION_MINOR@
 
 #cmakedefine USE_ADDER
+#cmakedefine TEST_ADDER
+#cmakedefine TEST_GRAPHICS

@@ -2,9 +2,6 @@
 #include <GL/glew.h>
 #include <GL/glu.h>
 #include <GLFW/glfw3.h>
-#ifdef USE_ADDER
-#include <adder.h>
-#endif
 #include <iostream>
 #include <string>
 
@@ -61,12 +58,6 @@ void PrintShaderInfoLog(GLint const Shader)
 int main(int argc, char** argv)
 {
 	std::cout << argv[0] << " Version " << OLAS_VERSION_MAJOR << "." << OLAS_VERSION_MINOR << '\n';
-
-#ifdef USE_ADDER
-	std::cout << "using Adder lib:" << add(72.1f, 73.8f) << '\n';
-#else
-	std::cout << "NOT USING Adder lib:" << 72.1f + 73.8f << '\n';
-#endif
 
 	GLFWwindow *window;
 
