@@ -45,8 +45,7 @@ CTestTestfile.cmake
 _deps
 
 
-out/build/
-
-
+[Oo][Uu][Tt]/
 [Bb][Uu][Ii][Ll][Dd]/
 .vscode/settings.json
+.vs/

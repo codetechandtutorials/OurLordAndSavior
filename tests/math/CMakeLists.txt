@@ -1,11 +1,11 @@
 add_executable(math_test tester.cpp)
 
-target_include_directories(math_test 
+target_include_directories(math_test
     PUBLIC ${EXTRA_INCLUDE_DIRS}
 )
 
-target_link_directories(math_test 
-	PUBLIC ${EXTRA_LIB_DIRS}
+target_link_directories(math_test
+    PUBLIC ${EXTRA_LIB_DIRS}
 )
 
 target_link_libraries(math_test PUBLIC ${EXTRA_LINKS})
