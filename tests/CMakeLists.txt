@@ -1,4 +1,3 @@
+cmake_minimum_required(VERSION 3.15)
 
-if (TEST_ADDER AND USE_ADDER)
-  add_subdirectory(math)
-endif()
+add_subdirectory(math)

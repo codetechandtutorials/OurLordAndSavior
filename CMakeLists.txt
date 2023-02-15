@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.13.4)
+cmake_minimum_required(VERSION 3.15)
 
 project(OLAS VERSION 1.1)
 
@@ -33,7 +33,7 @@ option(USE_ADDER "A simple library for adding 2 floats." ON)
 option(TEST_ADDER "Test library for adding 2 floats." ON)
 #option(TEST_GRAPHICS "Test launching opengl with glfw window." ON)
 
-if(TEST_ADDER)
+if(USE_ADDER)
 	add_subdirectory(Adder)
 	list(APPEND EXTRA_LIB_DIRS "Adder")
 	list(APPEND EXTRA_INCLUDE_DIRS "Adder")
@@ -42,12 +42,11 @@ endif()
 
 configure_file(OLASConfig.h.in OLASConfig.h)
 
-
 if(TEST_ADDER)
   enable_testing()
   add_subdirectory(tests)
+  include(CTest)
 endif()
-
 
 install(FILES "${PROJECT_BINARY_DIR}/OLASConfig.h" DESTINATION include)
 

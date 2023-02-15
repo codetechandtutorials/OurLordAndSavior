@@ -2,7 +2,7 @@
 #include <cstdlib>
 int main(int argc, char** argv)
 {
-  if (argc < 3) 	return -1; // invalid parameter count
+  if (argc < 3) return -1; // invalid parameter count
 
   float cpp_add_value = atof(argv[1]) + atof(argv[2]);
 
