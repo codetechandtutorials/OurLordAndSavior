@@ -4,6 +4,9 @@ The build system generator that we should probably all use, CMake.
 
 This repo is generated for the set of [CMake Tutorials](https://www.youtube.com/watch?v=nlKcXPUJGwA&list=PLalVdRk2RC6o5GHu618ARWh0VO0bFlif4)
 
+
+<br/>
+
 ## Getting Started
 To get started, you'll need to do the following:
 1. Fork and clone this to your local machine using the command:
@@ -15,17 +18,23 @@ To get started, you'll need to do the following:
 2. Navigate to the your git directory
 
 ```bash
-    cd [your_repo_name]
+    cd [your_clone_repo_name]
 ```
 3. Open the code in your prefferd code editor
 
-4. Navigate to a specific episode code
+4. Navigate to a specific episode code commit:
 
 ```bash
     git checkout [episode_commit_number]
 ```
-5. Follow along with the video for that episode on YouTube to use and modify the code.
+5. To have your own copy of the code on a branch do this:
+```bash
+    git switch -C [new_branch_name_of_your_choice]
+```
+6. Follow along with the video for that episode on YouTube to use and modify the code.
 
+
+<br/>
 
 ## EPISODES
 Here is a list of the episodes in this series and the corresponding commits:
@@ -45,3 +54,12 @@ Here is a list of the episodes in this series and the corresponding commits:
 <!-- * Episode 12: [Visual Studio (OpenGL & Vulkan examples)](https://www.youtube.com/watch?v=xYN3J13rjhM&list=PLalVdRk2RC6o5GHu618ARWh0VO0bFlif4&index=12) - ```Wach video (not these repo) ``` -->
 * Episode 13: [CTest](https://www.youtube.com/watch?v=xYN3J13rjhM&list=PLalVdRk2RC6o5GHu618ARWh0VO0bFlif4&index=13) - ```5b7c8ca```
 <!-- * Episode 14: [CDash](https://www.youtube.com/watch?v=xYN3J13rjhM&list=PLalVdRk2RC6o5GHu618ARWh0VO0bFlif4&index=12) - `````` -->
+
+
+<br/>
+
+## Contributing
+If you notice any issues or would like to contribute to the code, please feel free to create a pull request or open an issue.
+
+## License
+This project is licensed under the [LICENECE](License.txt).
